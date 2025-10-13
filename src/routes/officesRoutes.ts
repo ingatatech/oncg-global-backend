@@ -37,7 +37,7 @@ router.get("/", getAllOffices);
 router.get("/:id", getOfficeById);
 
 // ✏️ Update an office
-router.put("/:id", auth, officeValidation, updateOffice);
+router.patch("/:id", auth, officeValidation, updateOffice);
 
 // 🗑️ Delete an office
 router.delete("/:id", auth, deleteOffice);

@@ -8,12 +8,12 @@ const publicationRepo = AppDataSource.getRepository(Publication);
 
 // 🟩 Create a new publication with file upload
 export const createPublication = asyncHandler(async (req: Request, res: Response) => {
-  const { title, description, type, date, isActive = true } = req.body;
+  const { title, description, type,  isActive = true } = req.body;
 
-  if (!title || !description || !type || !date) {
+  if (!title || !description || !type) {
     return res.status(400).json({
       success: false,
-      message: "Please provide title, description, type, and date.",
+      message: "Please provide title, description, type.",
     });
   }
 
@@ -30,7 +30,6 @@ export const createPublication = asyncHandler(async (req: Request, res: Response
     title,
     description,
     type,
-    date,
     isActive,
     fileUrl,
     fileType,
@@ -48,7 +47,7 @@ export const createPublication = asyncHandler(async (req: Request, res: Response
 // 🟦 Get all publications
 export const getPublications = asyncHandler(async (_req: Request, res: Response) => {
   const publications = await publicationRepo.find({
-    order: { date: "DESC" },
+    order: { createdAt: "DESC" },
   });
   res.status(200).json({ success: true, data: publications });
 });

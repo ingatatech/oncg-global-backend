@@ -34,7 +34,6 @@ export const createOffice = authAsyncHandler(async (req: Request, res: Response)
     phone,
     email,
     isHeadquarters,
-
     isActive,
   });
 

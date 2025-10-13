@@ -27,9 +27,6 @@ export class Publication extends BaseEntity {
   @Column({ type: "varchar", length: 100, nullable: true })
   fileType!: string;
 
-  @Column({ type: "date" })
-  date!: Date;
-
   @Column({ default: true })
   isActive!: boolean;
 

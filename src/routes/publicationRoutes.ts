@@ -15,7 +15,7 @@ const router = express.Router();
 router.post("/", upload.single("file"), createPublication);
 router.get("/", getPublications);
 router.get("/:id", getPublicationById);
-router.put("/:id", upload.single("file"), updatePublication);
+router.patch("/:id", upload.single("file"), updatePublication);
 router.delete("/:id", deletePublication);
 
 export default router;
