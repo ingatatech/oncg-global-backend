@@ -138,7 +138,7 @@ export const createInsight = authAsyncHandler(async (req: MulterRequest, res: Re
           email: s.email,
           title: safeTitle,
           preview,
-          link: `${process.env.FRONTEND_URL || "https://oncg.com"}/insights/${savedInsight.id}`,
+          link: `${process.env.FRONTEND_URL || "https://oncgglobal.com"}/insights`,
         }),
       ),
     );

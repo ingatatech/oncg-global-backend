@@ -3,8 +3,11 @@ import { Publication } from "../entities/Publication";
 import { uploadImage } from "../utils/uploadImage"; 
 import { AppDataSource } from "../data-source";
 import { asyncHandler } from "../utils/asyncHandler";
+import { sendInsightNotificationEmail } from "../utils/emailService";
+import { Subscriber } from "../entities/Subscriber";
 
 const publicationRepo = AppDataSource.getRepository(Publication);
+const subscriberRepo = AppDataSource.getRepository(Subscriber);
 
 // 🟩 Create a new publication with file upload
 export const createPublication = asyncHandler(async (req: Request, res: Response) => {
@@ -36,7 +39,21 @@ export const createPublication = asyncHandler(async (req: Request, res: Response
   });
 
   const savedPublication = await publicationRepo.save(publication);
-
+  const subscribers = await subscriberRepo.find({ where: { isActive: true } });
+  if (subscribers.length > 0) {
+    const safeTitle = savedPublication.title;
+    const preview = (savedPublication.description || "").slice(0, 180);
+    await Promise.all(
+      subscribers.map((s) =>
+        sendInsightNotificationEmail({
+          email: s.email,
+          title: safeTitle,
+          preview,
+          link: `${process.env.FRONTEND_URL || "https://oncgglobal.com"}/insights`,
+        }),
+      ),
+    );
+  }
   res.status(201).json({
     success: true,
     message: "Publication created successfully",

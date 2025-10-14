@@ -100,7 +100,7 @@ export async function sendPasswordResetConfirmationEmail(userData: {
         </div>
         
         <div style="text-align: center; margin: 30px 0;">
-          <a href="${process.env.FRONTEND_URL || 'https://oncg.com'}/login" 
+          <a href="${process.env.FRONTEND_URL || 'https://oncgglobal.com'}/login" 
              style="background-color: #0ea5e9; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">
             Login to Your Account
           </a>
@@ -120,7 +120,7 @@ export async function sendPasswordResetConfirmationEmail(userData: {
         <p style="font-size: 14px; color: #64748b; text-align: center;">
           Best regards,<br/>
           <strong>Omega Sir Team</strong><br/>
-          <a href="mailto:support@oncg.com" style="color: #0ea5e9;">support@oncg.com</a>
+          <a href="mailto:support@oncgglobal.com" style="color: #0ea5e9;">support@oncgglobal.com</a>
         </p>
       </div>
     `;
@@ -238,7 +238,6 @@ export async function sendInsightNotificationEmail(payload: {
   email: string;
   title: string;
   preview?: string;
-  industry?: string;
   link: string;
 }) {
   try {
@@ -246,7 +245,6 @@ export async function sendInsightNotificationEmail(payload: {
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #0ea5e9; margin-bottom: 8px;">New Insight Published</h2>
         <p style="margin: 0 0 12px 0; color: #111; font-size: 16px;"><strong>${payload.title}</strong></p>
-        ${payload.industry ? `<p style="margin: 0 0 8px 0; color: #555;">Industry: ${payload.industry}</p>` : ''}
         ${payload.preview ? `<p style="margin: 0 0 16px 0; color: #333; line-height: 1.5;">${payload.preview}...</p>` : ''}
         <div style="margin: 18px 0;">
           <a href="${payload.link}" style="background-color: #0ea5e9; color: white; padding: 10px 18px; text-decoration: none; border-radius: 6px;">Read Insight</a>
