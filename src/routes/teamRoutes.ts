@@ -25,6 +25,6 @@ router.patch(
 );
 
 router.delete("/:id", teamController.deleteTeamMember);
-router.post("/reorder", authAsyncHandler(teamController.reorderTeamMembers));
+router.put("/reorder", authAsyncHandler(teamController.reorderTeamMembers));
 
 export default router;
