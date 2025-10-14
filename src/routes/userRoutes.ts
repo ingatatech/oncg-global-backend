@@ -26,5 +26,6 @@ router.post('/verify-otp', verifyOTP)
 
 // Reset password with new password
 router.post('/reset', resetPassword)
+router.get("/statistics", asyncHandler(userController.getStatistics));
 
 export default router;
