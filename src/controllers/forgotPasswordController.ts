@@ -47,7 +47,6 @@ export const requestPasswordReset = async (
       success: true,
       message: 
          'OTP has been sent to your email address',
-      ...(process.env.NODE_ENV !== 'production' && { otp }), // Only include OTP in non-production
     })
   } catch (error) {
     console.error('Error in requestPasswordReset:', error)
